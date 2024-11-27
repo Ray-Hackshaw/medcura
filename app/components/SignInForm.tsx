@@ -58,13 +58,13 @@ export const SignInForm = () => {
       <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-white px-2">
         <Link
           href="/reset-password"
-          className="underline transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
         >
           Forgot something?
         </Link>
         <Link
           href="/help"
-          className="underline transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
         >
           Contact an admin
         </Link>
