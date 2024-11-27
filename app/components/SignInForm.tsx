@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import Link from "next/link";
+import { TransitionLink } from "./TransitionLink";
 
 export const SignInForm = () => {
   const [password, setPassword] = useState<string>();
@@ -11,11 +12,14 @@ export const SignInForm = () => {
   const disabled = !password || !email;
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center px-5 z-[5]">
+    <div
+      className="w-full h-screen flex flex-col items-center justify-center px-5 z-[5]"
+      id="sign-in-form"
+    >
       <div className="max-w-md space-y-8 w-full h-auto md:h-[400px] border-2 rounded-lg overflow-hidden bg-white/80 p-4 shadow-xl">
-        <div className="">
-          <h1 className="text-xl md:text-3xl">MedCura</h1>
-          <h2 className="text-base md:text-lg text-gray-500">
+        <div className="text-center">
+          <h1 className="text-xl md:text-5xl font-bold">MedCura</h1>
+          <h2 className="text-base md:text-lg text-gray-500 px-5 font-semibold">
             Transforming healthcare with every connection.
           </h2>
         </div>
@@ -25,7 +29,7 @@ export const SignInForm = () => {
             type="email"
             id="email"
             placeholder="Enter your email here"
-            className="p-3 rounded-md text-black bg-white/60"
+            className="p-3 rounded-md text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -36,7 +40,7 @@ export const SignInForm = () => {
           <input
             type="password"
             id="password"
-            className="p-3 rounded-md text-black bg-white/60"
+            className="p-3 rounded-md text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
             placeholder="Enter your password"
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => {
@@ -58,16 +62,17 @@ export const SignInForm = () => {
       <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-white px-2">
         <Link
           href="/reset-password"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['-_']"
         >
           Forgot something?
         </Link>
-        <Link
-          href="/help"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['>_']"
+        <TransitionLink
+          href="/dashboard"
+          transitionId="sign-in-form"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['-_']"
         >
           Contact an admin
-        </Link>
+        </TransitionLink>
       </div>
     </div>
   );

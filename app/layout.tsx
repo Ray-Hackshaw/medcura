@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import PulsingBackground from "./components/PulsingBackground";
 
 export const metadata: Metadata = {
   title: "MedCura",
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased overflow-hidden ${monaSans.className}`}>
-        {children}
+        <PulsingBackground />
+        <main className="min-h-screen z-[5] relative">{children}</main>
       </body>
     </html>
   );
