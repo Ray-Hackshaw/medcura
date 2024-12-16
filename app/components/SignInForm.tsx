@@ -18,8 +18,10 @@ export const SignInForm = () => {
     >
       <div className="max-w-md space-y-8 w-full h-auto md:h-[400px] border-2 rounded-lg overflow-hidden bg-white/80 p-4 shadow-xl">
         <div className="text-center">
-          <h1 className="text-xl md:text-5xl font-bold">MedCura</h1>
-          <h2 className="text-base md:text-lg text-gray-500 px-5 font-semibold">
+          <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-tr from-gray-500 to-gray-800 text-gradient">
+            MedCura
+          </h1>
+          <h2 className="text-sm md:text-lg text-gray-500 px-5 font-semibold">
             Transforming healthcare with every connection.
           </h2>
         </div>
@@ -62,14 +64,14 @@ export const SignInForm = () => {
       <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-white px-2">
         <Link
           href="/reset-password"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['-_']"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['·_']"
         >
           Forgot something?
         </Link>
         <TransitionLink
           href="/dashboard"
           transitionId="sign-in-form"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['-_']"
+          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['·_']"
         >
           Contact an admin
         </TransitionLink>

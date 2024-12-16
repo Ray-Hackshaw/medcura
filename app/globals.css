@@ -36,3 +36,11 @@ body {
   opacity: 0;
   filter: blur(12px);
 }
+
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
