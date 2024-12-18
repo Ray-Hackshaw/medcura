@@ -29,7 +29,7 @@ const LiveTimer = () => {
 
   return (
     <div>
-      <p className="text-sm">{time}</p>
+      <p className="text-sm md:px-0 px-4">{time}</p>
     </div>
   );
 };

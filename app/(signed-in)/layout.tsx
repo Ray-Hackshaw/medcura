@@ -11,13 +11,13 @@ export default function DashboardLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div
-      className="mx-auto p-8 md:p-20 xl:px-40 flex flex-col relative h-screen"
+      className="mx-auto md:p-20 xl:px-40 flex flex-col relative h-screen"
       id="dashboard-layout"
     >
-      <div className="w-full flex-1 shadow-xl rounded-lg overflow-hidden flex flex-col">
+      <div className="w-full flex-1 shadow-xl md:rounded-lg overflow-hidden flex flex-col">
         <div className="w-full md:flex flex-1">
           <SideBar />
-          <div className="w-full border-black border-l p-4 bg-white/80">
+          <div className="w-full border-black border-l md:p-4 bg-white/80 flex-1 h-full">
             {children}
           </div>
         </div>

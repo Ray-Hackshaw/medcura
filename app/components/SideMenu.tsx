@@ -16,7 +16,7 @@ const menuItems = [
 
 export const SideMenu = () => {
   return (
-    <div className="w-full h-full py-1 flex flex-col">
+    <div className="w-full h-full py-1 hidden md:flex flex-col">
       {menuItems.map((item) => (
         <Link
           href={`/${item.toLowerCase()}`}
