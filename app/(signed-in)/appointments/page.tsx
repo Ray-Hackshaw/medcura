@@ -49,18 +49,34 @@ const slots: AppointmentSlot[] = [
 ];
 
 export default async function DashboardPage() {
+  const nextAppointmentTime = "8:00AM";
   return (
-    <div className="p-4 max-w-lg">
-      <div className="border border-black rounded-md overflow-hidden">
-        <div className="flex items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
-          <Calendar />
-          <p>Today&apos;s Appointments</p>
+    <div className="p-4 flex flex-col md:flex-row gap-2">
+      <div className="md:border relative md:flex md:bg-white md:border-black md:items-center md:justify-center md:rounded-md w-full md:overflow-hidden">
+        <div className="hidden md:absolute md:flex w-full md:top-0 items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
+          <ClockIcon />
+          <p>Current Appointment</p>
         </div>
+        <div className="p-2 md:flex-col md:w-full md:text-center">
+          <p>You have no current appointment.</p>
+          <p>
+            Your next appointment is at{" "}
+            <span className="font-semibold">{nextAppointmentTime}</span>
+          </p>
+        </div>
+      </div>
+      <div className="max-w-xs w-full">
+        <div className="border border-black rounded-md overflow-hidden">
+          <div className="flex items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
+            <Calendar />
+            <p>Today&apos;s Appointments</p>
+          </div>
 
-        <div className="flex flex-col gap-2 py-4 bg-white">
-          {slots.map((appointment) => (
-            <Appointment key={appointment.time} details={appointment} />
-          ))}
+          <div className="flex flex-col gap-2 py-4 bg-white">
+            {slots.map((appointment) => (
+              <Appointment key={appointment.time} details={appointment} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
