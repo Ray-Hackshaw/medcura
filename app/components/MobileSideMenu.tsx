@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import PulsingBackground from "./PulsingBackground";
+import { TransitionLink } from "./TransitionLink";
 
 const menuItems = [
   "Appointments",
@@ -34,12 +35,30 @@ export const MobileSideMenu = () => {
       >
         <div>
           <div>
-            <button
-              className="z-[2]  w-full justify-end flex p-4"
-              onClick={() => setOpen(false)}
-            >
-              <X />
-            </button>
+            <div className="p-4 space-y-2">
+              <div className="flex w-full items-center justify-between">
+                <p className="text-2xl md:text-3xl font-bold bg-gradient-to-tr from-gray-100 to-gray-400 text-gradient">
+                  MedCura
+                </p>
+                <button
+                  className="z-[2] w-full justify-end flex"
+                  onClick={() => setOpen(false)}
+                >
+                  <X />
+                </button>
+              </div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-4 h-4 rounded-full bg-white" />
+                <div className="underline cursor-not-allowed">Settings</div>
+                <TransitionLink
+                  href="/"
+                  className="underline"
+                  transitionId="dashboard-layout"
+                >
+                  Log out
+                </TransitionLink>
+              </div>
+            </div>
             <div className="flex flex-col">
               {menuItems.map((item) => (
                 <Link

@@ -54,7 +54,7 @@ export default async function DashboardPage() {
             <Link
               href={item.href ?? ""}
               key={item.title}
-              className="group p-4 md:min-w-[250px] border-2 rounded-md bg-white/70 transition-all duration-200 shadow-md hover:shadow-xl"
+              className="group p-4 md:min-w-[350px] border border-black/30 rounded-md bg-white/70 transition-all duration-200 shadow-md hover:shadow-xl"
             >
               <div className="w-full items-center flex justify-between">
                 <p className="text-base md:text-2xl group-hover:font-bold font-semibold transition-all duration-200">

@@ -53,8 +53,8 @@ export const SignInForm = () => {
         </div>
         <button
           className={cn(
-            "flex w-full border-2 rounded-lg justify-center py-2 bg-gray-800 text-white transition-all duration-100",
-            disabled && "bg-gray-600 opacity-50"
+            "flex w-full border-2 rounded-lg justify-center py-2 cursor-pointer bg-gray-800 text-white transition-all duration-100",
+            disabled && "bg-gray-600 opacity-50 cursor-not-allowed"
           )}
           disabled={disabled}
         >
@@ -64,14 +64,14 @@ export const SignInForm = () => {
       <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-white px-2">
         <Link
           href="/reset-password"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['·_']"
+          className="transition-all duration-100 hover:font-bold"
         >
           Forgot something?
         </Link>
         <TransitionLink
           href="/dashboard"
           transitionId="sign-in-form"
-          className="transition-all duration-100 hover:indent-2 hover:font-bold hover:before:content-['·_']"
+          className="transition-all duration-100 hover:font-bold"
         >
           Contact an admin
         </TransitionLink>
