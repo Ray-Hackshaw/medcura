@@ -4,8 +4,8 @@ import { TransitionLink } from "./TransitionLink";
 
 export const SideBar = () => {
   return (
-    <div className="md:max-w-[200px] lg:max-w-[300px] w-full overflow-hidden bg-black/60 text-white ">
-      <div className="flex md:flex-col md:gap-4">
+    <div className="z-[20] relative md:max-w-[200px] lg:max-w-[300px] w-full overflow-hidden text-white ">
+      <div className="flex md:flex-col md:gap-4 w-full bg-black/60 md:h-full">
         <div className="flex items-center gap-2 p-4 md:flex-col">
           <p className="text-2xl md:text-3xl font-bold bg-gradient-to-tr from-gray-100 to-gray-400 text-gradient">
             MedCura

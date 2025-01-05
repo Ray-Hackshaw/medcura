@@ -1,5 +1,5 @@
 import { cn } from "@/app/lib/utils";
-import { Calendar, CheckCircleIcon, ClockIcon } from "lucide-react";
+import { Bookmark, Calendar, CheckCircleIcon, ClockIcon } from "lucide-react";
 
 interface AppointmentSlot {
   time: string;
@@ -9,6 +9,20 @@ interface AppointmentSlot {
   reason?: string;
   flag?: boolean;
 }
+
+const times = [
+  "8:00",
+  "8:30",
+  "9:30",
+  "10:00",
+  "10:30",
+  "11:30",
+  "1:00",
+  "1:30",
+  "2:30",
+  "3:30",
+  "4:00",
+];
 
 const slots: AppointmentSlot[] = [
   {
@@ -46,37 +60,111 @@ const slots: AppointmentSlot[] = [
     status: "Upcoming",
     reason: undefined,
   },
+  {
+    time: "11:30",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
+  {
+    time: "1:00",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
+  {
+    time: "1:30",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
+  {
+    time: "2:30",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
+  {
+    time: "3:30",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
+  {
+    time: "4:00",
+    name: "Jon Hopkins",
+    image: undefined,
+    status: "Upcoming",
+    reason: undefined,
+  },
 ];
 
 export default async function DashboardPage() {
   const nextAppointmentTime = "8:00AM";
+
+  const bookmarkedAppointments = [];
+
+  const hasBookmarks = bookmarkedAppointments.length > 0;
+
   return (
-    <div className="p-4 flex flex-col md:flex-row gap-2">
-      <div className="md:border relative md:flex md:bg-white md:border-black md:items-center md:justify-center md:rounded-md w-full md:overflow-hidden">
-        <div className="hidden md:absolute md:flex w-full md:top-0 items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
-          <ClockIcon />
-          <p>Current Appointment</p>
+    <div className="p-4 space-y-4">
+      <div className="flex flex-col lg:flex-row-reverse gap-4">
+        <div className="lg:border relative lg:flex lg:bg-white lg:border-black lg:items-center lg:justify-center lg:rounded-lg w-full min-w-[320px] lg:overflow-hidden ">
+          <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
+            <ClockIcon />
+            <p>Current Appointment</p>
+          </div>
+          <div className="p-2 lg:flex-col lg:w-full lg:text-center">
+            <p>You have no current appointment.</p>
+            <p>
+              Your next appointment is at{" "}
+              <span className="font-semibold">{nextAppointmentTime}</span>
+            </p>
+          </div>
         </div>
-        <div className="p-2 md:flex-col md:w-full md:text-center">
-          <p>You have no current appointment.</p>
-          <p>
-            Your next appointment is at{" "}
-            <span className="font-semibold">{nextAppointmentTime}</span>
-          </p>
+        <div className="w-full mx-auto">
+          <div className="border border-black rounded-md overflow-hidden">
+            <div className="flex items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
+              <Calendar />
+              <p>Today&apos;s Appointments</p>
+            </div>
+
+            <div className="flex flex-col gap-2 py-4 bg-white max-h-[500px] overflow-auto">
+              {times.map((time) => {
+                const appointment = slots.find((x) => x.time === time);
+
+                if (!appointment) {
+                  return <div key={time}></div>;
+                }
+                return <Appointment key={time} details={appointment} />;
+              })}
+            </div>
+          </div>
         </div>
       </div>
-      <div className="max-w-xs w-full">
-        <div className="border border-black rounded-md overflow-hidden">
-          <div className="flex items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
-            <Calendar />
-            <p>Today&apos;s Appointments</p>
-          </div>
-
-          <div className="flex flex-col gap-2 py-4 bg-white">
-            {slots.map((appointment) => (
-              <Appointment key={appointment.time} details={appointment} />
-            ))}
-          </div>
+      <div className="border border-black rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
+        <div className="flex items-center gap-4 bg-black/40  text-white border-b border-black p-2 font-semibold">
+          <Bookmark />
+          <p>Bookmarked Appointments</p>
+        </div>
+        <div className="flex flex-col gap-2 md:flex-row p-2 bg-white">
+          {!hasBookmarks && (
+            <div className="text-sm md:text-base text-center w-full ">
+              You have not bookmarked any appointments.
+              <p>
+                Click on an appointment and click on the{" "}
+                <span className="inline-flex align-middle">
+                  <Bookmark />
+                </span>{" "}
+                icon to flag it for later.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -101,10 +189,17 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
       >
         <div className="rounded-full w-8 h-8 bg-black/40 border-2 flex-shrink-0" />
         <div className="w-full">
-          <p className={cn(isCurrent && "font-bold", "truncate max-w-[18ch]")}>
+          <p
+            className={cn(
+              isCurrent && "font-bold",
+              "truncate max-w-[18ch] text-sm lg:text-base"
+            )}
+          >
             {details.name}
           </p>
-          <p className="text-sm">{details.reason ?? "Undisclosed"}</p>
+          <p className="text-xs lg:text-sm">
+            {details.reason ?? "Undisclosed"}
+          </p>
         </div>
         {details.status === "Done" && (
           <CheckCircleIcon className="text-green-400" />
