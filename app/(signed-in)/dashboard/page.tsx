@@ -41,9 +41,6 @@ export default async function DashboardPage() {
   return (
     <div className="w-full mx-auto h-full flex-1 items-center flex flex-col gap-4 md:gap-0 md:justify-evenly md:py-0 py-8">
       <div className="text-center">
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-tr from-gray-500 to-gray-800 text-gradient">
-          MedCura
-        </h1>
         <p className="text-lg md:text-xl">Welcome back.</p>
         <LiveTimer />
       </div>

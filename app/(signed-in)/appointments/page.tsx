@@ -170,6 +170,7 @@ export default async function DashboardPage() {
     </div>
   );
 }
+
 const Appointment = ({ details }: { details: AppointmentSlot }) => {
   const isCurrent = details.status === "Ongoing";
   return (
