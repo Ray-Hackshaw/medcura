@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import Link from "next/link";
-import { TransitionLink } from "./TransitionLink";
 
 export const SignInForm = () => {
   const [password, setPassword] = useState<string>();
@@ -68,13 +67,12 @@ export const SignInForm = () => {
         >
           Forgot something?
         </Link>
-        <TransitionLink
+        <Link
           href="/dashboard"
-          transitionId="sign-in-form"
           className="transition-all duration-100 hover:font-bold"
         >
           Contact an admin
-        </TransitionLink>
+        </Link>
       </div>
     </div>
   );

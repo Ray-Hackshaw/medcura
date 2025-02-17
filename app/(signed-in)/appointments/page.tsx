@@ -1,5 +1,12 @@
 import { cn } from "@/app/lib/utils";
-import { Bookmark, Calendar, CheckCircleIcon, ClockIcon } from "lucide-react";
+import {
+  Bookmark,
+  Calendar,
+  CheckCircleIcon,
+  ClockIcon,
+  Edit,
+  Plus,
+} from "lucide-react";
 
 interface AppointmentSlot {
   time: string;
@@ -111,25 +118,41 @@ export default async function DashboardPage() {
 
   const hasBookmarks = bookmarkedAppointments.length > 0;
 
+  const amount = 10;
+
   return (
     <div className="p-4 space-y-4">
-      <div className="flex flex-col lg:flex-row-reverse gap-4">
-        <div className="lg:border relative lg:flex lg:bg-white lg:border-black lg:items-center lg:justify-center lg:rounded-lg w-full min-w-[320px] lg:overflow-hidden ">
-          <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
-            <ClockIcon />
-            <p>Current Appointment</p>
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col gap-4">
+          <div className="relative h-full space-y-2">
+            <p>You have {amount} bookings today.</p>
+            <button className="border shadow-sm p-2 text-white bg-black/90 rounded-lg flex gap-2 items-center">
+              <p>Add new</p>
+              <Plus />
+            </button>
+            <button className="border shadow-sm p-2 rounded-lg text-white bg-black/90 flex gap-2 items-center">
+              <p>Edit existing</p>
+              <Edit />
+            </button>
           </div>
-          <div className="p-2 lg:flex-col lg:w-full lg:text-center">
-            <p>You have no current appointment.</p>
-            <p>
-              Your next appointment is at{" "}
-              <span className="font-semibold">{nextAppointmentTime}</span>
-            </p>
+          <div className="lg:border relative lg:flex h-full lg:bg-white lg:shadow-lg lg:items-center lg:justify-center lg:rounded-lg w-full min-w-[320px] lg:overflow-hidden ">
+            <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-black/80 text-white border-b border-black p-2 font-semibold">
+              <ClockIcon />
+              <p>Current Appointment</p>
+            </div>
+            <div className="p-2 lg:flex-col lg:w-full lg:text-center">
+              <p>You have no current appointment.</p>
+              <p>
+                Your next appointment is at{" "}
+                <span className="font-semibold">{nextAppointmentTime}</span>
+              </p>
+            </div>
           </div>
         </div>
+
         <div className="w-full mx-auto">
-          <div className="border border-black rounded-md overflow-hidden">
-            <div className="flex items-center gap-4 bg-black/40 text-white border-b border-black p-2 font-semibold">
+          <div className="border shadow-lg rounded-md overflow-hidden">
+            <div className="flex items-center gap-4 bg-black/80 text-white border-b border-black p-2 font-semibold">
               <Calendar />
               <p>Today&apos;s Appointments</p>
             </div>
@@ -147,8 +170,9 @@ export default async function DashboardPage() {
           </div>
         </div>
       </div>
-      <div className="border border-black rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
-        <div className="flex items-center gap-4 bg-black/40  text-white border-b border-black p-2 font-semibold">
+
+      <div className="border shadow-lg rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
+        <div className="flex items-center gap-4 bg-black/80  text-white border-b border-black p-2 font-semibold">
           <Bookmark />
           <p>Bookmarked Appointments</p>
         </div>
