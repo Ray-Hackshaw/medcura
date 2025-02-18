@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 export const SignInForm = () => {
   const [password, setPassword] = useState<string>();
@@ -16,13 +17,13 @@ export const SignInForm = () => {
       id="sign-in-form"
     >
       <div className="max-w-md space-y-8 w-full h-auto md:h-[400px] border-2 rounded-lg overflow-hidden bg-white/80 p-4 shadow-xl">
-        <div className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-tr from-gray-500 to-gray-800 text-gradient">
-            MedCura
-          </h1>
-          <h2 className="text-sm md:text-lg text-gray-500 px-5 font-semibold">
-            Transforming healthcare with every connection.
-          </h2>
+        <div className="text-centerga">
+          <Image
+            src="/logo-with-text.png"
+            height="400"
+            width="400"
+            alt="MedCura logo with slon text"
+          />
         </div>
         <div className="flex-col flex w-full space-y-2 text-sm">
           <label htmlFor="email">Email</label>
@@ -52,8 +53,8 @@ export const SignInForm = () => {
         </div>
         <button
           className={cn(
-            "flex w-full border-2 rounded-lg justify-center py-2 cursor-pointer bg-gray-800 text-white transition-all duration-100",
-            disabled && "bg-gray-600 opacity-50 cursor-not-allowed"
+            "flex w-full border-2 rounded-lg justify-center py-2 cursor-pointer bg-slate-700 text-white transition-all duration-100",
+            disabled && "bg-slate-400 opacity-50 cursor-not-allowed"
           )}
           disabled={disabled}
         >

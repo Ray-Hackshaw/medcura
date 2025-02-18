@@ -81,7 +81,7 @@ export const MobileSideMenu = () => {
             <Link
               href={`/${item.toLowerCase()}`}
               key={item}
-              className="px-4 border-t text-xl last:border-b border-white/40 py-2 md:py-4"
+              className="px-4 border-t text-xl last:border-b border-slate-800/40 py-2 md:py-4"
             >
               {item}
             </Link>
