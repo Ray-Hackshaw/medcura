@@ -40,9 +40,9 @@ const PulsingBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[1] bg-gradient-to-r from-current to-slate-400 overflow-hidden">
+    <div className="fixed inset-0 z-[1] bg-gradient-to-r from-slate-100 to-slate-400 overflow-hidden">
       <svg
-        className="absolute inset-0 w-full h-full text-white"
+        className="absolute inset-0 w-full h-full text-black"
         xmlns="http://www.w3.org/2000/svg"
       >
         {lines}

@@ -12,7 +12,7 @@ export const SignInForm = () => {
 
   return (
     <div
-      className="w-full h-screen flex flex-col items-center justify-center px-5 z-[5]"
+      className="w-full h-screen flex flex-col items-center justify-center px-2 md:px-5 z-[5]"
       id="sign-in-form"
     >
       <div className="max-w-md space-y-8 w-full h-auto md:h-[400px] border-2 rounded-lg overflow-hidden bg-white/80 p-4 shadow-xl">
@@ -30,7 +30,7 @@ export const SignInForm = () => {
             type="email"
             id="email"
             placeholder="Enter your email here"
-            className="p-3 rounded-md text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
+            className="p-3 rounded-md cursor-pointer text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -41,7 +41,7 @@ export const SignInForm = () => {
           <input
             type="password"
             id="password"
-            className="p-3 rounded-md text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
+            className="p-3 rounded-md cursor-pointer text-black bg-white/60 transition-all duration-200 hover:ring-2 ring-black/10 focus:ring-2 focus:ring-black focus:ring-opacity-30 focus:outline-none"
             placeholder="Enter your password"
             onChange={(e) => setEmail(e.target.value)}
             onKeyDown={(e) => {
@@ -60,7 +60,7 @@ export const SignInForm = () => {
           Continue
         </button>
       </div>
-      <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-white px-2">
+      <div className="w-full max-w-md pt-6 flex flex-col gap-2 text-sm text-black px-2">
         <Link
           href="/reset-password"
           className="transition-all duration-100 hover:font-bold"

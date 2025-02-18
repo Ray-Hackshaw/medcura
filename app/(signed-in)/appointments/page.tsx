@@ -1,22 +1,17 @@
+import { AppointmentDateController } from "@/app/components/AppointmentDateController";
 import { cn } from "@/app/lib/utils";
-import {
-  Bookmark,
-  Calendar,
-  CheckCircleIcon,
-  ClockIcon,
-  Edit,
-  Plus,
-} from "lucide-react";
+import { Bookmark, Calendar, CheckCircleIcon, ClockIcon } from "lucide-react";
 
 interface AppointmentSlot {
   time: string;
-  name: string;
+  name?: string;
   image?: string;
-  status: "Upcoming" | "Ongoing" | "Done" | "Cancelled";
+  status: "Available" | "Upcoming" | "Ongoing" | "Done" | "Cancelled";
   reason?: string;
   flag?: boolean;
 }
 
+// List of all available times
 const times = [
   "8:00",
   "8:30",
@@ -31,85 +26,66 @@ const times = [
   "4:00",
 ];
 
-const slots: AppointmentSlot[] = [
+// Appointments with shuffled names and some removed slots
+const appointments: AppointmentSlot[] = [
   {
     time: "8:00",
-    name: "John Watson",
+    name: "Michael Lawson",
     image: undefined,
     status: "Done",
-    reason: "Sore throat",
+    reason: "Flu symptoms",
   },
   {
     time: "8:30",
-    name: "James Fielder",
+    name: "Samantha Lee",
     image: undefined,
     status: "Done",
-    reason: "Broken arm",
-  },
-  {
-    time: "9:30",
-    name: "Marissa Verner",
-    image: undefined,
-    status: "Done",
-    reason: undefined,
+    reason: "Knee pain",
   },
   {
     time: "10:00",
-    name: "Ashley Greene",
+    name: "Carlos Mendoza",
     image: undefined,
     status: "Ongoing",
-    reason: "Vampirism",
+    reason: "Allergy check-up",
   },
   {
     time: "10:30",
-    name: "Jon Hopkins",
-    image: undefined,
-    status: "Upcoming",
-    reason: undefined,
-  },
-  {
-    time: "11:30",
-    name: "Jon Hopkins",
+    name: "Emily Carter",
     image: undefined,
     status: "Upcoming",
     reason: undefined,
   },
   {
     time: "1:00",
-    name: "Jon Hopkins",
+    name: "David Richardson",
     image: undefined,
     status: "Upcoming",
-    reason: undefined,
-  },
-  {
-    time: "1:30",
-    name: "Jon Hopkins",
-    image: undefined,
-    status: "Upcoming",
-    reason: undefined,
-  },
-  {
-    time: "2:30",
-    name: "Jon Hopkins",
-    image: undefined,
-    status: "Upcoming",
-    reason: undefined,
+    reason: "Routine check-up",
   },
   {
     time: "3:30",
-    name: "Jon Hopkins",
-    image: undefined,
-    status: "Upcoming",
-    reason: undefined,
-  },
-  {
-    time: "4:00",
-    name: "Jon Hopkins",
+    name: "Sophia Martinez",
     image: undefined,
     status: "Upcoming",
     reason: undefined,
   },
 ];
+
+const getScheduleWithPlaceholders = (): AppointmentSlot[] => {
+  return times.map((time) => {
+    const appointment = appointments.find((slot) => slot.time === time);
+    return (
+      appointment || {
+        time,
+        name: undefined,
+        image: undefined,
+        status: "Available",
+        reason: undefined,
+      }
+    );
+  });
+};
 
 export default async function DashboardPage() {
   const nextAppointmentTime = "8:00AM";
@@ -120,23 +96,15 @@ export default async function DashboardPage() {
 
   const amount = 10;
 
+  const slots = getScheduleWithPlaceholders();
+
   return (
     <div className="p-4 space-y-4">
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4">
-          <div className="relative h-full space-y-2">
-            <p>You have {amount} bookings today.</p>
-            <button className="border shadow-sm p-2 text-white bg-black/90 rounded-lg flex gap-2 items-center">
-              <p>Add new</p>
-              <Plus />
-            </button>
-            <button className="border shadow-sm p-2 rounded-lg text-white bg-black/90 flex gap-2 items-center">
-              <p>Edit existing</p>
-              <Edit />
-            </button>
-          </div>
+          <AppointmentDateController amount={amount} />
           <div className="lg:border relative lg:flex h-full lg:bg-white lg:shadow-lg lg:items-center lg:justify-center lg:rounded-lg w-full min-w-[320px] lg:overflow-hidden ">
-            <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-black/80 text-white border-b border-black p-2 font-semibold">
+            <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-gradient-to-br from-slate-700 to-slate-500 text-white border-b border-black p-2 font-semibold">
               <ClockIcon />
               <p>Current Appointment</p>
             </div>
@@ -152,27 +120,22 @@ export default async function DashboardPage() {
 
         <div className="w-full mx-auto">
           <div className="border shadow-lg rounded-md overflow-hidden">
-            <div className="flex items-center gap-4 bg-black/80 text-white border-b border-black p-2 font-semibold">
+            <div className="flex items-center gap-4 bg-gradient-to-br from-slate-700 to-slate-500 text-white border-b border-black p-2 font-semibold">
               <Calendar />
               <p>Today&apos;s Appointments</p>
             </div>
 
             <div className="flex flex-col gap-2 py-4 bg-white max-h-[500px] overflow-auto">
-              {times.map((time) => {
-                const appointment = slots.find((x) => x.time === time);
-
-                if (!appointment) {
-                  return <div key={time}></div>;
-                }
-                return <Appointment key={time} details={appointment} />;
-              })}
+              {slots.map((appointment) => (
+                <Appointment key={appointment.time} details={appointment} />
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       <div className="border shadow-lg rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
-        <div className="flex items-center gap-4 bg-black/80  text-white border-b border-black p-2 font-semibold">
+        <div className="flex items-center gap-4 bg-gradient-to-br from-slate-700 to-slate-500 text-white border-b border-black p-2 font-semibold">
           <Bookmark />
           <p>Bookmarked Appointments</p>
         </div>
@@ -197,6 +160,7 @@ export default async function DashboardPage() {
 
 const Appointment = ({ details }: { details: AppointmentSlot }) => {
   const isCurrent = details.status === "Ongoing";
+  const isAvailable = details.status === "Available";
   return (
     <div
       className="flex items-center gap-4 px-2 cursor-pointer group"
@@ -209,10 +173,18 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
         className={cn(
           "border-2 rounded-md p-2 flex items-center gap-2 w-full group-hover:border-black group-hover:bg-gray-300/10 transition-all duration-200",
           details.status === "Done" && "bg-gray-300/50",
-          details.status === "Upcoming" && "bg-gray-300/30"
+          isCurrent &&
+            "bg-gradient-to-l from-slate-700 to-slate-500 text-white",
+          details.status === "Upcoming" && "bg-gray-300/30",
+          isAvailable && "border-dashed"
         )}
       >
-        <div className="rounded-full w-8 h-8 bg-black/40 border-2 flex-shrink-0" />
+        <div
+          className={cn(
+            "rounded-full w-8 h-8 bg-black/40 border-2 flex-shrink-0",
+            isAvailable && "bg-transparent border-2 border-dashed"
+          )}
+        />
         <div className="w-full">
           <p
             className={cn(
@@ -221,9 +193,12 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
             )}
           >
             {details.name}
+            {isAvailable && "No booking"}
           </p>
           <p className="text-xs lg:text-sm">
-            {details.reason ?? "Undisclosed"}
+            {details.reason && !isAvailable && details.reason}
+            {!details.reason && !isAvailable && "Undisclosed"}
+            {isAvailable && "Time is currently free"}
           </p>
         </div>
         {details.status === "Done" && (

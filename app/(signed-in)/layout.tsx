@@ -17,7 +17,7 @@ export default function DashboardLayout({
       <div className="w-full flex-1 shadow-xl md:rounded-lg overflow-hidden flex flex-col max-w-[1440px] mx-auto">
         <div className="w-full md:flex flex-1">
           <SideBar />
-          <div className="w-full border-black border-l md:p-4 bg-white/80 flex-1 h-full">
+          <div className="w-full border-black border-l md:p-4 bg-white/80 flex-1 h-full overflow-y-auto">
             {children}
           </div>
         </div>

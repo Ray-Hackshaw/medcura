@@ -25,11 +25,15 @@ const LiveTimer = () => {
     const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  });
+
+  const dayDate = time.split("at")[0];
+  const liveTime = time.split("at")[1];
 
   return (
     <div>
-      <p className="text-sm md:px-0 px-4">{time}</p>
+      <p>{liveTime}</p>
+      <p className="text-sm md:px-0 px-4">{dayDate}</p>
     </div>
   );
 };
