@@ -77,9 +77,6 @@ export default async function DashboardPage() {
         <LiveTimer />
       </div>
       <div className="w-full bg-white shadow-xl p-1 lg:p-4 rounded-md border-slate-200 border overflow-hidden">
-        <p className="font-semibold text-xl md:text-2xl py-4 text-center">
-          Your day at a glance:
-        </p>
         <div className="grid gap-1 grid-cols-2 lg:gap-4">
           {quickStartItems.map((item, id) => (
             <Link

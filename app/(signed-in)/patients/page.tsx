@@ -177,7 +177,7 @@ export default function PatientsPage() {
   );
 
   return (
-    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6 py-8">
+    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6">
       <input
         type="text"
         placeholder="Search patients..."
@@ -185,7 +185,7 @@ export default function PatientsPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto">
         {filteredPatients.map((patient) => (
           <Link
             key={patient.name}

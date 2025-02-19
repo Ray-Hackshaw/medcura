@@ -12,7 +12,7 @@ const menuItems = [
   "Appointments",
   "Patients",
   "Medications",
-  "Billing",
+  // "Billing",
   "Staff",
   "Reports",
   "Messages",

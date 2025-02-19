@@ -52,7 +52,6 @@ export default function PatientPage() {
             patient.careStatus === "monitor" && "text-yellow-600"
           )}
         >
-          Status:{" "}
           {patient.careStatus.charAt(0).toUpperCase() +
             patient.careStatus.slice(1)}
         </p>

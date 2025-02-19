@@ -8,7 +8,7 @@ const menuItems = [
   "Appointments",
   "Patients",
   "Medications",
-  "Billing",
+  // "Billing",
   "Staff",
   "Reports",
   "Messages",
@@ -25,7 +25,7 @@ export const SideMenu = () => {
           className={cn(
             path.includes(item.toLowerCase()) &&
               "font-bold bg-white/20 indent-2",
-            "hover:font-bold transition-all px-4 md:text-xl hover:indent-2 hover:bg-white/20 duration-200 border-t last:border-b border-black/40 py-2 md:py-4"
+            "hover:font-bold transition-all px-4 md:text-xl hover:indent-2 hover:bg-white/20 duration-200 border-t last:border-b border-white/20 py-2 md:py-4"
           )}
         >
           {item}

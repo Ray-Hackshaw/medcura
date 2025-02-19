@@ -321,7 +321,7 @@ export default function MedicationsPage() {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6 py-8">
+    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6">
       <input
         type="text"
         placeholder="Search medications..."
