@@ -177,7 +177,7 @@ export default function PatientsPage() {
   );
 
   return (
-    <div className="w-full mx-auto max-h-[100vh] pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6 py-8">
+    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6 py-8">
       <input
         type="text"
         placeholder="Search patients..."
@@ -215,7 +215,6 @@ export default function PatientsPage() {
                 patient.careStatus === "monitor" && "text-yellow-600"
               )}
             >
-              Status:{" "}
               {patient.careStatus.charAt(0).toUpperCase() +
                 patient.careStatus.slice(1)}
             </p>

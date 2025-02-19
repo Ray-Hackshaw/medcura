@@ -3,6 +3,7 @@
 import { ChevronLeft, ChevronRight, Plus, Edit } from "lucide-react";
 import { useState } from "react";
 import { format, addDays, subDays } from "date-fns";
+import LiveTimer from "./LiveTime";
 
 export const AppointmentDateController = ({ amount }: { amount: number }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -14,31 +15,37 @@ export const AppointmentDateController = ({ amount }: { amount: number }) => {
   return (
     <div className="relative h-full space-y-2">
       <p className="font-bold">Today, you have {amount} bookings.</p>
-
-      <div className="flex items-center justify-center gap-4 font-semibold">
-        <button
-          onClick={() => changeDate(-1)}
-          className="p-2 rounded-full hover:bg-gray-200"
-        >
-          <ChevronLeft />
-        </button>
-        <span>{format(selectedDate, "EEEE, MMM d, yyyy")}</span>
-        <button
-          onClick={() => changeDate(1)}
-          className="p-2 rounded-full hover:bg-gray-200"
-        >
-          <ChevronRight />
-        </button>
+      <div className="w-full">
+        <LiveTimer timeOnly={true} />
       </div>
+      <div className="w-full flex-col md:flex-row flex items-center justify-between">
+        <div className="flex items-center justify-center gap-4 font-semibold text-sm py-2 lg:text-lg">
+          <button
+            onClick={() => changeDate(-1)}
+            className="p-2 rounded-full hover:bg-gray-200"
+          >
+            <ChevronLeft />
+          </button>
+          <span>{format(selectedDate, "EEEE, MMM d, yyyy")}</span>
+          <button
+            onClick={() => changeDate(1)}
+            className="p-2 rounded-full hover:bg-gray-200"
+          >
+            <ChevronRight />
+          </button>
+        </div>
 
-      <button className="border shadow-sm p-2 text-white bg-gradient-to-br from-slate-700 to-slate-600 rounded-lg flex gap-2 items-center">
-        <p>Add new</p>
-        <Plus />
-      </button>
-      <button className="border shadow-sm p-2 rounded-lg text-white bg-gradient-to-br from-slate-700 to-slate-600 flex gap-2 items-center">
-        <p>Edit existing</p>
-        <Edit />
-      </button>
+        <div className="flex gap-2 items-center">
+          <button className="shadow-sm p-2 w-fit whitespace-nowrap text-white bg-gradient-to-br from-slate-700 to-slate-600 rounded-lg flex gap-2 items-center">
+            <p>Add new</p>
+            <Plus />
+          </button>
+          <button className="shadow-sm p-2 w-fit whitespace-nowrap rounded-lg text-white bg-gradient-to-br from-slate-700 to-slate-600 flex gap-2 items-center">
+            <p>Edit existing</p>
+            <Edit />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

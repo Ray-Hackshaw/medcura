@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const LiveTimer = () => {
+const LiveTimer = ({ timeOnly }: { timeOnly?: boolean }) => {
   const [time, setTime] = useState<string>("");
 
   const updateTime = () => {
@@ -33,7 +33,7 @@ const LiveTimer = () => {
   return (
     <div>
       <p>{liveTime}</p>
-      <p className="text-sm md:px-0 px-4">{dayDate}</p>
+      {!timeOnly && <p className="text-sm md:px-0 px-4">{dayDate}</p>}
     </div>
   );
 };

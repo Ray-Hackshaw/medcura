@@ -1,6 +1,13 @@
 import { AppointmentDateController } from "@/app/components/AppointmentDateController";
 import { cn } from "@/app/lib/utils";
-import { Bookmark, Calendar, CheckCircleIcon, ClockIcon } from "lucide-react";
+import {
+  Bookmark,
+  Calendar,
+  CheckCircleIcon,
+  CircleDashed,
+  CircleSlash,
+  ClockIcon,
+} from "lucide-react";
 
 interface AppointmentSlot {
   time: string;
@@ -100,9 +107,10 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-4 space-y-4">
+      <AppointmentDateController amount={amount} />
+
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4">
-          <AppointmentDateController amount={amount} />
           <div className="lg:border relative lg:flex h-full lg:bg-white lg:shadow-lg lg:items-center lg:justify-center lg:rounded-lg w-full min-w-[320px] lg:overflow-hidden ">
             <div className="hidden lg:absolute lg:flex w-full lg:top-0 items-center gap-4 bg-gradient-to-br from-slate-700 to-slate-500 text-white border-b border-black p-2 font-semibold">
               <ClockIcon />
@@ -125,7 +133,7 @@ export default async function DashboardPage() {
               <p>Today&apos;s Appointments</p>
             </div>
 
-            <div className="flex flex-col gap-2 py-4 bg-white max-h-[500px] overflow-auto">
+            <div className="flex flex-col gap-2 py-4 bg-white md:max-h-[300px] lg:max-h-[320px] xl:max-h-[350px] 2xl:max-h-[400px] overflow-auto">
               {slots.map((appointment) => (
                 <Appointment key={appointment.time} details={appointment} />
               ))}
@@ -166,7 +174,12 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
       className="flex items-center gap-4 px-2 cursor-pointer group"
       key={details.time}
     >
-      <p className="min-w-[40px] group-hover:font-semibold transition-all duration-200">
+      <p
+        className={cn(
+          isCurrent && "font-semibold",
+          "min-w-[40px] group-hover:font-semibold transition-all duration-200"
+        )}
+      >
         {details.time}
       </p>
       <div
@@ -174,7 +187,7 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
           "border-2 rounded-md p-2 flex items-center gap-2 w-full group-hover:border-black group-hover:bg-gray-300/10 transition-all duration-200",
           details.status === "Done" && "bg-gray-300/50",
           isCurrent &&
-            "bg-gradient-to-l from-slate-700 to-slate-500 text-white",
+            "bg-gradient-to-l from-slate-700 to-slate-500 text-white border-black",
           details.status === "Upcoming" && "bg-gray-300/30",
           isAvailable && "border-dashed"
         )}
@@ -201,11 +214,17 @@ const Appointment = ({ details }: { details: AppointmentSlot }) => {
             {isAvailable && "Time is currently free"}
           </p>
         </div>
+        {details.status === "Available" && (
+          <CircleDashed className="text-slate-300" />
+        )}
         {details.status === "Done" && (
           <CheckCircleIcon className="text-green-400" />
         )}
         {details.status === "Ongoing" && (
           <ClockIcon className="text-blue-400" />
+        )}
+        {details.status === "Upcoming" && (
+          <CircleSlash className="text-slate-700" />
         )}
       </div>
     </div>
