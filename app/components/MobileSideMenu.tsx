@@ -13,9 +13,9 @@ const menuItems = [
   "Patients",
   "Medications",
   // "Billing",
-  "Staff",
-  "Reports",
-  "Messages",
+  // "Staff",
+  // "Reports",
+  // "Messages",
 ];
 
 export const MobileSideMenu = () => {

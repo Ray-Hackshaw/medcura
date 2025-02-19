@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/app/lib/utils";
-import { User } from "lucide-react";
+import { CircleUser, Search } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -11,7 +11,7 @@ interface Patient {
   lastSeenDate: Date;
   lastSeenReason: string;
   followUpScheduled: boolean;
-  careStatus: "standard" | "monitor" | "urgent";
+  careStatus: "standard" | "monitor" | "high risk";
 }
 
 export const patientList: Patient[] = [
@@ -37,7 +37,7 @@ export const patientList: Patient[] = [
     lastSeenDate: new Date("2024-02-12"),
     lastSeenReason: "Post-surgery follow-up",
     followUpScheduled: true,
-    careStatus: "urgent",
+    careStatus: "high risk",
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ export const patientList: Patient[] = [
     lastSeenDate: new Date("2024-02-01"),
     lastSeenReason: "Neurology consult",
     followUpScheduled: true,
-    careStatus: "urgent",
+    careStatus: "high risk",
   },
   {
     id: 8,
@@ -101,7 +101,7 @@ export const patientList: Patient[] = [
     lastSeenDate: new Date("2024-02-07"),
     lastSeenReason: "Fracture follow-up",
     followUpScheduled: true,
-    careStatus: "urgent",
+    careStatus: "high risk",
   },
   {
     id: 12,
@@ -133,7 +133,7 @@ export const patientList: Patient[] = [
     lastSeenDate: new Date("2024-02-13"),
     lastSeenReason: "Work-related stress",
     followUpScheduled: true,
-    careStatus: "urgent",
+    careStatus: "high risk",
   },
   {
     id: 16,
@@ -149,7 +149,7 @@ export const patientList: Patient[] = [
     lastSeenDate: new Date("2024-02-10"),
     lastSeenReason: "Cardiac assessment",
     followUpScheduled: false,
-    careStatus: "urgent",
+    careStatus: "high risk",
   },
   {
     id: 18,
@@ -178,13 +178,16 @@ export default function PatientsPage() {
 
   return (
     <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6">
-      <input
-        type="text"
-        placeholder="Search patients..."
-        className="w-full max-w-md p-2 border rounded-md shadow-sm"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
+        <Search className="w-5 h-5 text-gray-500" />
+        <input
+          type="text"
+          placeholder="Search patients..."
+          className="w-full p-2 outline-none"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto">
         {filteredPatients.map((patient) => (
           <Link
@@ -192,8 +195,8 @@ export default function PatientsPage() {
             href={`/patients/${patient.id}`}
             className="p-4 border rounded-lg shadow-md bg-white flex flex-col items-center"
           >
-            <div className="w-16 h-16 flex items-center justify-center relative bg-gray-300 rounded-full mb-3">
-              <User className="w-12 h-12 text-black/20" />
+            <div className="w-16 h-16 flex items-center justify-center relative bg-slate-100 border rounded-full mb-3">
+              <CircleUser className="w-12 h-12 text-slate-500" />
             </div>
             <h2 className="text-lg font-semibold">{patient.name}</h2>
             <div className="py-2">
@@ -211,7 +214,7 @@ export default function PatientsPage() {
             <p
               className={cn(
                 "text-sm font-semibold text-green-600",
-                patient.careStatus === "urgent" && "text-red-600",
+                patient.careStatus === "high risk" && "text-red-600",
                 patient.careStatus === "monitor" && "text-yellow-600"
               )}
             >

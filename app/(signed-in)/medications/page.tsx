@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/app/components/DataTable";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
+import { X, Search } from "lucide-react";
 
 interface Medication {
   id: number;
@@ -322,13 +322,16 @@ export default function MedicationsPage() {
 
   return (
     <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6">
-      <input
-        type="text"
-        placeholder="Search medications..."
-        className="w-full max-w-md p-2 border rounded-md shadow-sm"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
+        <Search className="w-5 h-5 text-gray-500" />
+        <input
+          type="text"
+          placeholder="Search medications..."
+          className="w-full p-2 outline-none"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
       <div className="flex gap-2 mt-2">
         {activeEffects.map((effect) => (

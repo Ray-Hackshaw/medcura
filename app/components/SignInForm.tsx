@@ -72,7 +72,7 @@ export const SignInForm = () => {
           href="/dashboard"
           className="transition-all duration-100 hover:font-bold"
         >
-          Contact an admin
+          Take a peek
         </Link>
       </div>
     </div>

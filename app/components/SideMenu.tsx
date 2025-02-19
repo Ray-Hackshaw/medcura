@@ -9,9 +9,9 @@ const menuItems = [
   "Patients",
   "Medications",
   // "Billing",
-  "Staff",
-  "Reports",
-  "Messages",
+  // "Staff",s
+  // "Reports",s
+  // "Messages",s
 ];
 
 export const SideMenu = () => {
