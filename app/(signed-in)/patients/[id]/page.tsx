@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { patientList } from "../page";
 import { useParams } from "next/navigation";
 import { User } from "lucide-react";
 import { cn } from "@/app/lib/utils";
+import { patientList } from "@/app/lib/patients";
 
 export default function PatientPage() {
   const searchParams: { id: string } = useParams();
@@ -48,7 +48,7 @@ export default function PatientPage() {
         <p
           className={cn(
             "text-sm font-semibold text-green-600",
-            patient.careStatus === "urgent" && "text-red-600",
+            patient.careStatus === "high risk" && "text-red-600",
             patient.careStatus === "monitor" && "text-yellow-600"
           )}
         >
