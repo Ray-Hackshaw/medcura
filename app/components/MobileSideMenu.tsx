@@ -22,7 +22,7 @@ export const MobileSideMenu = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex md:hidden w-full z-[50] flex-1 items-center justify-end p-4">
+    <div className="flex md:hidden w-full flex-1 items-center justify-end p-4">
       <button
         className={cn("z-[60]", open && "hidden")}
         onClick={() => setOpen(true)}
@@ -39,15 +39,15 @@ export const MobileSideMenu = () => {
 
       <div
         className={cn(
-          "fixed top-0 left-0 h-screen w-screen flex flex-col text-black z-[50] transition-transform duration-300",
+          "fixed top-0 left-0 min-h-screen w-screen flex flex-col text-black z-[60] transition-transform duration-300",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="absolute inset-0 z-[45]">
+        <div className="absolute inset-0">
           <PulsingBackground />
         </div>
 
-        <div className="space-y-2 z-[55] relative">
+        <div className="space-y-2 z-[65] relative">
           <div className="flex w-full items-center justify-between">
             <Image
               src="/logo.png"

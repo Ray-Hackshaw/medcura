@@ -27,8 +27,8 @@ const LiveTimer = ({ timeOnly }: { timeOnly?: boolean }) => {
     return () => clearInterval(interval);
   });
 
-  const dayDate = time.split("at")[0];
-  const liveTime = time.split("at")[1];
+  const dayDate = time.split(" at ")[0];
+  const liveTime = time.split(" at ")[1];
 
   return (
     <div>
