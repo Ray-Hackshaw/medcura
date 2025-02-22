@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const SideBar = () => {
   return (
-    <div className="z-[20] relative md:max-w-[200px] lg:max-w-[300px] w-full overflow-hidden text-white ">
+    <div className="z-[20] relative md:max-w-[200px] lg:max-w-[300px] w-full overflow-hidden text-white">
       <div className="flex md:flex-col md:gap-4 w-full bg-gradient-to-br from-slate-700 to-slate-900 md:h-full">
         <div className="flex items-center gap-2 md:flex-col border-b border-white/20">
           <Link href="/dashboard">

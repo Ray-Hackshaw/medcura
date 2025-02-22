@@ -3,29 +3,26 @@
 import React, { useEffect, useState } from "react";
 
 const PulsingBackground = () => {
-  const [lines, setLines] = useState<JSX.Element[]>([]);
+  const [dots, setDots] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const generateLines = () => {
-      const newLines = [];
-      for (let i = 0; i < 20; i++) {
-        const startX = Math.random() * 100;
-        const startY = Math.random() * 100;
-        const endX = startX + (Math.random() - 0.5) * 20;
-        const endY = startY + (Math.random() - 0.5) * 20;
-        const duration = 3 + Math.random() * 4;
+    const generateDots = () => {
+      const newDots = [];
+      for (let i = 0; i < 50; i++) {
+        const cx = Math.random() * 100;
+        const cy = Math.random() * 100;
+        const r = 2 + Math.random() * 3;
+        const duration = 6 + Math.random() * 10;
         const delay = Math.random() * 5;
-        const opacity = 0.1 + Math.random() * 0.3;
+        const opacity = 0.1 + Math.random() * 0.4;
 
-        newLines.push(
-          <line
+        newDots.push(
+          <circle
             key={i}
-            x1={`${startX}%`}
-            y1={`${startY}%`}
-            x2={`${endX}%`}
-            y2={`${endY}%`}
-            stroke="currentColor"
-            strokeWidth="1"
+            cx={`${cx}%`}
+            cy={`${cy}%`}
+            r={r}
+            fill="currentColor"
             style={{
               animation: `pulse ${duration}s ${delay}s infinite alternate`,
               opacity: opacity,
@@ -33,32 +30,32 @@ const PulsingBackground = () => {
           />
         );
       }
-      setLines(newLines);
+      setDots(newDots);
     };
 
-    generateLines();
+    generateDots();
   }, []);
 
   return (
     <div className="fixed inset-0 z-[1] bg-gradient-to-r from-slate-100 to-slate-400 overflow-hidden">
       <svg
-        className="absolute inset-0 w-full h-full text-black"
+        className="absolute inset-0 w-full h-full text-slate-200"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {lines}
+        {dots}
       </svg>
       <style jsx>{`
         @keyframes pulse {
           0% {
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.8);
           }
           50% {
             opacity: 0.5;
           }
           100% {
             opacity: 0;
-            transform: scale(1.05);
+            transform: scale(1.2);
           }
         }
       `}</style>

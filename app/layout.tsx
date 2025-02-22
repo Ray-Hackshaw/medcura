@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased overflow-hidden ${monaSans.className}`}>
+      <body className={`antialiased ${monaSans.className}`}>
         <PulsingBackground />
         <main className="min-h-screen z-[2] relative">{children}</main>
       </body>
