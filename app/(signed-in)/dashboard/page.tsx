@@ -71,7 +71,7 @@ const QuickLinks = () => (
 
 export default async function DashboardPage() {
   return (
-    <div className="w-full mx-auto h-full py-4 flex-1 px-2 lg:px-0 items-center flex flex-col gap-4 md:gap-0 md:justify-between md:py-0">
+    <div className="w-full mx-auto space-y-4 py-4 flex-1 px-2 lg:px-0 items-center flex flex-col gap-4 md:gap-0 md:justify-between md:py-0">
       <div className="text-center w-full bg-white shadow-md p-1 lg:p-4 rounded-md border-slate-200 border overflow-hidden">
         <p className="text-lg md:text-xl font-bold">Welcome back.</p>
         <LiveTimer />
@@ -90,7 +90,7 @@ export default async function DashboardPage() {
               )}
             >
               <div className="w-full items-center flex justify-between">
-                <p className="text-sm w-full md:text-2xl group-hover:font-bold font-semibold transition-all duration-200">
+                <p className="text-md w-full md:text-2xl group-hover:font-bold font-semibold transition-all duration-200">
                   {item.title}
                 </p>
               </div>

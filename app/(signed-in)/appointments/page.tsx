@@ -106,7 +106,7 @@ export default async function DashboardPage() {
   const slots = getScheduleWithPlaceholders();
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="space-y-4 overflow-y-auto md:px-0 px-2 overflow-x-hidden">
       <AppointmentDateController amount={amount} />
 
       <div className="flex flex-col lg:flex-row gap-4">
@@ -142,7 +142,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <div className="border shadow-lg rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
+      <div className="shadow-lg rounded-md w-full mx-auto lg:max-w-full overflow-hidden">
         <div className="flex items-center gap-4 bg-gradient-to-br from-slate-700 to-slate-500 text-white border-b border-black p-2 font-semibold">
           <Bookmark />
           <p>Bookmarked Appointments</p>

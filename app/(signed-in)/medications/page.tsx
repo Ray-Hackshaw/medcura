@@ -230,6 +230,7 @@ const medications: Medication[] = [
 export default function MedicationsPage() {
   const [search, setSearch] = useState("");
   const [activeEffects, setActiveEffects] = useState<string[]>([]);
+  const [activeAreas, setActiveAreas] = useState<string[]>([]);
 
   const columns: ColumnDef<Medication>[] = [
     {
@@ -287,12 +288,17 @@ export default function MedicationsPage() {
         return (
           <div className="flex flex-wrap gap-1">
             {treatmentAreas.map((area, index) => (
-              <div
+              <button
                 key={index}
-                className="bg-blue-200 text-blue-700 px-2 py-1 rounded-md capitalize"
+                className={cn(
+                  "bg-blue-200 text-blue-700 px-2 py-1 rounded-md capitalize",
+                  activeAreas.includes(area) &&
+                    "text-white font-bold bg-blue-400"
+                )}
+                onClick={() => toggleTreatment(area)}
               >
                 {area}
-              </div>
+              </button>
             ))}
           </div>
         );
@@ -308,6 +314,14 @@ export default function MedicationsPage() {
     );
   };
 
+  const toggleTreatment = (treatment: string) => {
+    setActiveAreas((prevAreas) =>
+      prevAreas.includes(treatment)
+        ? prevAreas.filter((t) => t !== treatment)
+        : [...prevAreas, treatment]
+    );
+  };
+
   const filteredMedications = medications
     .filter((med) => {
       const matchesSearch = med.name
@@ -316,12 +330,26 @@ export default function MedicationsPage() {
       const matchesEffects =
         activeEffects.length === 0 ||
         med.sideEffects.some((eff) => activeEffects.includes(eff));
-      return matchesSearch && matchesEffects;
+
+      const matchesAreas =
+        activeAreas.length === 0 ||
+        med.treatmentAreas.some((area) => activeAreas.includes(area));
+
+      return matchesSearch && matchesEffects && matchesAreas;
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const hasActiveEffects = activeEffects.length > 0;
+  const hasActiveAreas = activeAreas.length > 0;
+
+    const handleResetTags = () => {
+      setActiveAreas([])
+      setActiveEffects([])
+    }
+
   return (
-    <div className="w-full mx-auto max-h-[100vh] bg-transparent pb-40 overflow-y-auto flex-1 flex flex-col gap-4 px-6">
+    <div className="w-full mx-auto bg-transparent h-[80vh] overflow-y-auto flex-1 flex flex-col px-6">
+      <div className="w-full flex items-center justify-between">
       <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
         <Search className="w-5 h-5 text-gray-500" />
         <input
@@ -332,20 +360,48 @@ export default function MedicationsPage() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-
-      <div className="flex gap-2 mt-2">
-        {activeEffects.map((effect) => (
-          <button
-            key={effect}
-            className="bg-blue-500 capitalize flex gap-2 items-center text-white px-2 py-1 rounded-md text-sm"
-            onClick={() => toggleEffect(effect)}
-          >
-            {effect} <X />
-          </button>
-        ))}
+      {(hasActiveEffects || hasActiveAreas) && (
+        <button className="underline" onClick={handleResetTags}>
+          Reset tags
+        </button>
+      )}
       </div>
-
-      <DataTable columns={columns} data={filteredMedications} />
+      {!hasActiveEffects && !hasActiveAreas && (
+        <p className="py-2 mt-2 text-muted-foreground">
+          No filters selected. Click on some tags to get started.
+        </p>
+      )}
+      {hasActiveEffects && (
+        <div className="flex items-center gap-2 py-2 mt-2">
+          Side Effects:
+          {activeEffects.map((effect) => (
+            <button
+              key={effect}
+              className=" bg-slate-500 capitalize flex gap-2 items-center text-white px-2 py-1 rounded-md text-sm"
+              onClick={() => toggleEffect(effect)}
+            >
+              {effect} <X />
+            </button>
+          ))}
+        </div>
+      )}
+      {hasActiveAreas && (
+        <div className="flex items-center gap-2 py-2 mt-2">
+          Treament Areas:
+          {activeAreas.map((area) => (
+            <button
+              key={area}
+              className="bg-blue-500 capitalize flex gap-2 items-center text-white px-2 py-1 rounded-md text-sm"
+              onClick={() => toggleTreatment(area)}
+            >
+              {area} <X />
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="py-2">
+        <DataTable columns={columns} data={filteredMedications} />
+      </div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const AppointmentDateController = ({ amount }: { amount: number }) => {
   };
 
   return (
-    <div className="relative h-full space-y-2">
+    <div className="relative space-y-2">
       <p className="font-bold">Today, you have {amount} bookings.</p>
       <div className="w-full">
         <LiveTimer timeOnly={true} />
@@ -36,11 +36,11 @@ export const AppointmentDateController = ({ amount }: { amount: number }) => {
         </div>
 
         <div className="flex gap-2 items-center">
-          <button className="shadow-sm p-2 w-fit whitespace-nowrap text-white bg-gradient-to-br from-slate-700 to-slate-600 rounded-lg flex gap-2 items-center">
+          <button className="hover:shadow-xl transition-all duration-200 shadow-sm p-2 w-fit whitespace-nowrap text-white bg-gradient-to-br from-slate-700 to-slate-600 rounded-lg flex gap-2 items-center">
             <p>Add new</p>
             <Plus />
           </button>
-          <button className="shadow-sm p-2 w-fit whitespace-nowrap rounded-lg text-white bg-gradient-to-br from-slate-700 to-slate-600 flex gap-2 items-center">
+          <button className="hover:shadow-xl transition-all duration-200 shadow-sm p-2 w-fit whitespace-nowrap rounded-lg text-white bg-gradient-to-br from-slate-700 to-slate-600 flex gap-2 items-center">
             <p>Edit existing</p>
             <Edit />
           </button>
