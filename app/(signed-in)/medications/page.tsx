@@ -342,29 +342,29 @@ export default function MedicationsPage() {
   const hasActiveEffects = activeEffects.length > 0;
   const hasActiveAreas = activeAreas.length > 0;
 
-    const handleResetTags = () => {
-      setActiveAreas([])
-      setActiveEffects([])
-    }
+  const handleResetTags = () => {
+    setActiveAreas([]);
+    setActiveEffects([]);
+  };
 
   return (
-    <div className="w-full mx-auto bg-transparent h-[80vh] overflow-y-auto flex-1 flex flex-col px-6">
+    <div className="w-full mx-auto bg-transparent h-[80vh] overflow-y-auto flex-1 flex flex-col px-2">
       <div className="w-full flex items-center justify-between">
-      <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
-        <Search className="w-5 h-5 text-gray-500" />
-        <input
-          type="text"
-          placeholder="Search medications..."
-          className="w-full p-2 outline-none"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
-      {(hasActiveEffects || hasActiveAreas) && (
-        <button className="underline" onClick={handleResetTags}>
-          Reset tags
-        </button>
-      )}
+        <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
+          <Search className="w-5 h-5 text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search medications..."
+            className="w-full p-2 outline-none"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        {(hasActiveEffects || hasActiveAreas) && (
+          <button className="underline" onClick={handleResetTags}>
+            Reset tags
+          </button>
+        )}
       </div>
       {!hasActiveEffects && !hasActiveAreas && (
         <p className="py-2 mt-2 text-muted-foreground">

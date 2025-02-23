@@ -32,7 +32,7 @@ export default function PatientsPage() {
     });
 
   return (
-    <div className="w-full mx-auto bg-transparent overflow-y-auto flex-1 flex flex-col gap-4 px-6">
+    <div className="w-full mx-auto bg-transparent overflow-y-auto flex-1 flex flex-col gap-4 px-2">
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
         <div className="flex items-center border rounded-md bg-white shadow-sm max-w-md w-full py-1 px-2">
           <Search className="w-5 h-5 text-gray-500" />
